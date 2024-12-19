@@ -1,6 +1,10 @@
+import getTrening from "@/lib/queries/getTrening";
+import Image from "next/image";
 import React from "react";
 
-export default function Tranining() {
+export default async function Tranining() {
+  const treinings = await getTrening();
+
   return (
     <div className="w-full bg-gradient-to-tl from-gray-900 via-gray-800 to-black py-16 text-white">
       <div className="max-w-6xl mx-auto px-4 text-center">
@@ -11,17 +15,32 @@ export default function Tranining() {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Training Option 1 */}
-          <div className="bg-gray-700 rounded-lg shadow-lg p-6">
-            <h3 className="text-2xl font-semibold mb-4">Osnovni Trening</h3>
-            <p className="text-gray-300">
-              Savršeno za početnike koji žele naučiti osnovne tehnike stonog
-              tenisa. Trening obuhvata uvod u pravila i osnovne pokrete.
-            </p>
-            <p className="mt-4 text-yellow-400 font-medium">Trajanje: 2 sata</p>
-            <p className="mt-1 text-yellow-400 font-medium">
-              Cijena: 30 KM po treningu
-            </p>
-          </div>
+          {treinings.map((trening) => (
+            <div
+              key={trening.id}
+              className="bg-gray-700 rounded-lg shadow-lg p-6"
+            >
+              {trening.coverImageUrl ? (
+                <Image
+                  src={trening.coverImageUrl}
+                  alt={trening.title}
+                  width={100}
+                  height={100}
+                />
+              ) : (
+                ""
+              )}
+
+              <h3 className="text-2xl font-semibold mb-4">{trening.title}</h3>
+              <p className="text-gray-300">{trening.summary}</p>
+              <p className="mt-4 text-yellow-400 font-medium">
+                {trening.location}
+              </p>
+              <p className="mt-1 text-yellow-400 font-medium">
+                {trening.startAt}
+              </p>
+            </div>
+          ))}
           {/* Training Option 2 */}
           <div className="bg-gray-700 rounded-lg shadow-lg p-6">
             <h3 className="text-2xl font-semibold mb-4">Napredni Trening</h3>

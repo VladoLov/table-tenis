@@ -1,7 +1,7 @@
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Events from "@/components/Events";
-import Gallery from "@/components/Gallery";
+
 import Gallyery2 from "@/components/Gallyery2";
 import Hero from "@/components/Hero";
 import News from "@/components/News";
