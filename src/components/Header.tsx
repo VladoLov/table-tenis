@@ -1,3 +1,6 @@
+"use client";
+
+import React, { useState } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -5,11 +8,11 @@ import {
   NavbarItem,
   NavbarMenu,
   NavbarMenuItem,
+  NavbarMenuToggle,
 } from "@nextui-org/navbar";
 import { Input } from "@nextui-org/input";
 import { Link } from "@nextui-org/link";
-
-export type MotionProps = HTMLMotion<"div">; // @see https://www.framer.com/motion/
+import { Button } from "@nextui-org/button";
 
 export const AcmeLogo = () => {
   return (
@@ -27,100 +30,134 @@ export const AcmeLogo = () => {
 export const SearchIcon = ({
   size = 24,
   strokeWidth = 1.5,
-  width = 24,
-  height = 24,
+  width = 16,
+  height = 16,
   ...props
-}) => {
-  return (
-    <svg
-      aria-hidden="true"
-      fill="none"
-      focusable="false"
-      height={height || size}
-      role="presentation"
-      viewBox="0 0 24 24"
-      width={width || size}
-      {...props}
-    >
-      <path
-        d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={strokeWidth}
-      />
-      <path
-        d="M22 22L20 20"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={strokeWidth}
-      />
-    </svg>
-  );
-};
+}) => (
+  <svg
+    aria-hidden="true"
+    fill="none"
+    focusable="false"
+    height={height || size}
+    role="presentation"
+    viewBox="0 0 24 24"
+    width={width || size}
+    {...props}
+  >
+    <path
+      d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={strokeWidth}
+    />
+    <path
+      d="M22 22L20 20"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={strokeWidth}
+    />
+  </svg>
+);
 
 export default function Header() {
-  const menuItems = ["Blog", "O Nama"];
-  return (
-    <Navbar isBordered>
-      <NavbarContent justify="start">
-        <NavbarBrand className="mr-4">
-          <Link href="/">
-            <AcmeLogo />
-            <p className="hidden sm:block font-bold text-inherit">ST Breza</p>
-          </Link>
-        </NavbarBrand>
-        <NavbarContent className="hidden sm:flex gap-3">
-          <NavbarItem>
-            <Link color="foreground" href="/">
-              Home
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="#">
-              O Nama
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link aria-current="page" color="foreground" href="/blogs">
-              Blog
-            </Link>
-          </NavbarItem>
-        </NavbarContent>
-      </NavbarContent>
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-      <NavbarContent as="div" className="items-center" justify="end">
-        <Input
-          classNames={{
-            base: "max-w-full sm:max-w-[10rem] h-10",
-            mainWrapper: "h-full",
-            input: "text-small",
-            inputWrapper:
-              "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-          }}
-          placeholder="Type to search..."
-          size="sm"
-          startContent={<SearchIcon size={18} />}
-          type="search"
+  const menuItems = [
+    { name: "Home", href: "/" },
+    { name: "O Nama", href: "#" },
+    { name: "Blog", href: "/blogs" },
+  ];
+
+  return (
+    <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
+      <NavbarContent className="sm:hidden" justify="start">
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         />
       </NavbarContent>
-      <NavbarMenu>
+
+      <NavbarContent className="sm:hidden pr-3" justify="center">
+        <NavbarBrand>
+          <Link href="/">
+            <AcmeLogo />
+            <p className="font-bold text-inherit">ST Breza</p>
+          </Link>
+        </NavbarBrand>
+      </NavbarContent>
+
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarBrand>
+          <Link href="/">
+            <AcmeLogo />
+            <p className="font-bold text-inherit">ST Breza</p>
+          </Link>
+        </NavbarBrand>
         {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
+          <NavbarItem key={`${item.name}-${index}`}>
+            <Link color="foreground" href={item.href}>
+              {item.name}
+            </Link>
+          </NavbarItem>
+        ))}
+      </NavbarContent>
+
+      <NavbarContent justify="end">
+        <NavbarItem className="hidden sm:flex">
+          <Input
+            classNames={{
+              base: "max-w-full sm:max-w-[10rem] h-10",
+              mainWrapper: "h-full",
+              input: "text-small",
+              inputWrapper:
+                "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+            }}
+            placeholder="Type to search..."
+            size="sm"
+            startContent={<SearchIcon size={18} />}
+            type="search"
+          />
+        </NavbarItem>
+        <NavbarItem className="sm:hidden">
+          <Button
+            isIconOnly
+            variant="light"
+            onPress={() => setIsSearchOpen(!isSearchOpen)}
+          >
+            <SearchIcon />
+          </Button>
+        </NavbarItem>
+      </NavbarContent>
+
+      <NavbarMenu>
+        {isSearchOpen && (
+          <NavbarMenuItem className="mb-4">
+            <Input
+              classNames={{
+                base: "max-w-full h-10",
+                mainWrapper: "h-full",
+                input: "text-small",
+                inputWrapper:
+                  "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+              }}
+              placeholder="Type to search..."
+              size="sm"
+              startContent={<SearchIcon size={18} />}
+              type="search"
+            />
+          </NavbarMenuItem>
+        )}
+        {menuItems.map((item, index) => (
+          <NavbarMenuItem key={`${item.name}-${index}`}>
             <Link
               className="w-full"
-              color={
-                index === 2
-                  ? "warning"
-                  : index === menuItems.length - 1
-                  ? "danger"
-                  : "foreground"
-              }
-              href="#"
+              color="foreground"
+              href={item.href}
               size="lg"
             >
-              {item}
+              {item.name}
             </Link>
           </NavbarMenuItem>
         ))}

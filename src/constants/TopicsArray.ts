@@ -1,6 +1,7 @@
 export const topicsArray = [
-  { id: "Turnir", description: "Turnir" },
+  { id: "Takmičenje", description: "Takmičenje" },
   { id: "Trening", description: "Trening" },
   { id: "Novosti", description: "Novosti" },
+  { id: "Oprema", description: "Oprema" },
   { id: "Ostalo", description: "Ostalo" },
 ];

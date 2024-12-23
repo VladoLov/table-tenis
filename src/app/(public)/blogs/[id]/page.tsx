@@ -2,8 +2,7 @@ import { getBlog } from "@/lib/queries/getBlog";
 import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import DOMPurify from "dompurify";
-import sanitizeHtml from "sanitize-html";
+
 import BlogContent from "@/components/BlogContent";
 
 type BlogPageProps = {
@@ -13,7 +12,8 @@ type BlogPageProps = {
 export async function generateMetadata({
   params,
 }: BlogPageProps): Promise<Metadata> {
-  const blogId = parseInt(params.id);
+  const { id } = await params;
+  const blogId = parseInt(id);
 
   if (isNaN(blogId)) return { title: "Blog Not Found" };
 
@@ -30,7 +30,8 @@ export async function generateMetadata({
 }
 
 export default async function BlogPage({ params }: BlogPageProps) {
-  const blogId = parseInt(params.id);
+  const { id } = await params;
+  const blogId = parseInt(id);
 
   // Validate the ID
   if (isNaN(blogId)) {
