@@ -16,9 +16,15 @@ export async function saveBlog(data: insertBlogSchemaType) {
   try {
     const { id, ...blogData } = data;
 
-    if (id && id !== 0) {
+    /*    if (id && id !== 0) {
       // Update existing blog
-      await db.update(blogDB).set(blogData).where(eq(blogDB.id, id));
+      await db.update(blogDB).set(blogData).where(eq(blogDB.id, id)); */
+    if (id !== undefined && id !== 0) {
+      // Update existing blog
+      await db
+        .update(blogDB)
+        .set(blogData)
+        .where(eq(blogDB.id, Number(id)));
     } else {
       // Insert new blog
       await db.insert(blogDB).values(blogData);

@@ -6,12 +6,14 @@ import { notFound } from "next/navigation";
 import BlogContent from "@/components/BlogContent";
 
 type BlogPageProps = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export async function generateMetadata({
   params,
-}: BlogPageProps): Promise<Metadata> {
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
   const { id } = await params;
   const blogId = parseInt(id);
 

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 
 export default function Gallyery2() {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const images = [
     "/AdobeStock_802929086.jpeg",
@@ -14,6 +14,7 @@ export default function Gallyery2() {
     "/AdobeStock_802929086.jpeg",
     "/AdobeStock_802929086.jpeg",
   ];
+
   return (
     <section id="gallery" className="bg-gray-100 py-12">
       <div className="max-w-6xl mx-auto px-4">

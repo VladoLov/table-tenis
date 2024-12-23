@@ -22,7 +22,7 @@ async function getBlogsAndTopics() {
 }
 
 export default async function BlogListPage() {
-  const { topics, blogsByTopic, allBlogs } = await getBlogsAndTopics();
+  const { topics, blogsByTopic } = await getBlogsAndTopics();
   /*   const blogs = await getAllBlogs();
 
   return (
