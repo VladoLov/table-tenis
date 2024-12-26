@@ -3,7 +3,7 @@ import React from "react";
 export default function About() {
   return (
     <div className="w-full bg-gradient-to-br from-gray-900 via-gray-800 to-black py-16 text-white">
-      <div className="max-w-5xl mx-auto px-4 text-center">
+      <div className="max-w-5xl mx-auto px-10 text-center">
         <h2 className="text-4xl font-bold mb-6">O Nama</h2>
         <p className="text-lg leading-relaxed">
           Dobrodošli na našu stranicu posvećenu ljubiteljima stonog tenisa! Mi

@@ -48,7 +48,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
   }
 
   return (
-    <div className="max-w-screen-xl mx-auto my-12">
+    <div className="max-w-screen-xl mx-auto my-12 px-10">
       <h1 className="text-3xl font-bold mb-4">{blog.title}</h1>
       {blog.coverImageUrl ? (
         <Image
@@ -59,7 +59,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
           className="w-full h-auto rounded-md mb-4"
         />
       ) : null}
-      <p className="text-gray-600">{blog.summary}</p>
+      <p className="text-gray-600 px-10">{blog.summary}</p>
       <BlogContent content={blog.content} />
       <p className="mt-4 text-sm text-gray-400">
         Published on:{" "}

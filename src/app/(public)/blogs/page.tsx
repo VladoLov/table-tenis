@@ -87,7 +87,7 @@ export default async function BlogListPage() {
           <div
             key={topic}
             id={topic.toLowerCase()}
-            className={`container mx-auto px-4 py-8 border-t-slate-900 ${
+            className={`container mx-auto px-0 py-8 border-t-slate-900 ${
               index % 2 === 0 ? "bg-slate-50" : "bg-gray-200"
             }`}
           >
@@ -99,7 +99,7 @@ export default async function BlogListPage() {
                   <article className="mb-12">
                     <Link
                       href={`/blogs/${topicBlogs[0].id}`}
-                      className="bg-black text-white px-6 py-2 w-full  hover:bg-gray-800 transition-colors inline-block"
+                      className="bg-white text-blue-950  lg:py-2 w-full  hover:bg-gray-800 transition-colors inline-block"
                     >
                       <Image
                         src={
@@ -109,18 +109,18 @@ export default async function BlogListPage() {
                         alt={topicBlogs[0].title}
                         width={800}
                         height={600}
-                        className="w-full h-96 object-top rounded-lg shadow-lg mb-4"
+                        className="w-full h-fit object-top rounded-lg border-b shadow-sm mb-4"
                       />
-                      <h2 className="text-3xl font-bold mb-2">
+                      <h2 className="text-3xl font-bold mb-2 px-10">
                         {topicBlogs[0].title}
                       </h2>
-                      <p className="text-gray-600 mb-4">
+                      <p className="text-gray-600 mb-4 px-10">
                         {topicBlogs[0].summary}
                       </p>
                     </Link>
                   </article>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 gap-8">
                     {topicBlogs.slice(1, 3).map((blog) => (
                       <article
                         key={blog.id}
@@ -138,20 +138,22 @@ export default async function BlogListPage() {
                             alt={blog.title}
                             width={300}
                             height={200}
-                            className="w-full h-48  object-top rounded-lg shadow-md mb-4"
+                            className="lg:w-full lg:h-48  object-top rounded-lg shadow-sm mb-4"
                           />
-                          <h3 className="text-xl font-semibold mb-2 ">
-                            {blog.title}
-                          </h3>
-                          <p className="text-gray-600 mb-4">{blog.summary}</p>
+                          <div className="gap-2 pl-2 flex flex-col justify-start items-start">
+                            <h3 className="text-xl font-semibold mb-2  ">
+                              {blog.title}
+                            </h3>
+                            <p className="text-gray-600 mb-4">{blog.summary}</p>
+                          </div>
                         </Link>
                       </article>
                     ))}
                   </div>
                 </div>
 
-                <div>
-                  <h2 className="text-2xl font-bold mb-6 pb-2 border-b">
+                <div className="hidden md:block">
+                  <h2 className=" text-2xl font-bold mb-6 pb-2 border-b">
                     More {topic} Articles
                   </h2>
                   {topicBlogs.slice(3).map((blog) => (
@@ -174,6 +176,39 @@ export default async function BlogListPage() {
                             />
                           </div>
                           <div>
+                            <h3 className="text-lg font-semibold mb-2 ">
+                              {blog.title}
+                            </h3>
+                            <p className="text-gray-600 mb-2">{blog.summary}</p>
+                          </div>
+                        </div>
+                      </Link>
+                    </article>
+                  ))}
+                </div>
+
+                {/** Small Screen list */}
+                <div className="md:hidden ">
+                  {topicBlogs.slice(1).map((blog) => (
+                    <article
+                      key={blog.id}
+                      className="mb-6 hover:scale-[1.02] duration-300 shadow-sm hover:shadow-md border-b"
+                    >
+                      <Link href={`/blogs/${blog.id}`}>
+                        <div className="flex flex-row gap-2">
+                          <div className="w-24 h-24 px-4">
+                            <Image
+                              src={
+                                blog.coverImageUrl ||
+                                "/placeholder.svg?height=300&width=300"
+                              }
+                              alt={blog.title}
+                              width={100}
+                              height={100}
+                              className="rounded-sm w-full h-full object-cover object-center"
+                            />
+                          </div>
+                          <div className="">
                             <h3 className="text-lg font-semibold mb-2">
                               {blog.title}
                             </h3>

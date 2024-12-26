@@ -8,7 +8,7 @@ export default async function News() {
     <div className="w-full bg-gradient-to-br from-blue-950 via-gray-900 to-black py-16 text-white">
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-4xl font-bold text-center mb-10">Novosti</h2>
-        <p className="text-gray-300 text-center mb-12">
+        <p className="text-gray-300 text-center mb-12 px-6">
           Ostanite u toku s najnovijim vijestima, događajima i uspjesima našeg
           kluba.
         </p>

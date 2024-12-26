@@ -51,13 +51,15 @@ export default function GlowingCard({
           href={`/blogs/${id}`}
           className="flex h-full w-full flex-col gap-2"
         >
-          <div className="mb-2 text-2xl font-bold text-gray-50">{title}</div>
+          <div className="mb-2 text-2xl font-bold text-start text-gray-50 px-4">
+            {title}
+          </div>
           <div className="flex items-center justify-center rounded-md">
             {image && title ? (
               <Image
                 src={image}
                 alt={title}
-                width={250}
+                width={300}
                 height={250}
                 className="rounded-md"
               />

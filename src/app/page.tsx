@@ -2,7 +2,8 @@ import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Events from "@/components/Events";
 
-import Gallyery2 from "@/components/Gallyery2";
+import GalleryPage from "@/components/GalleryPage";
+
 import Hero from "@/components/Hero";
 import News from "@/components/News";
 import Sponsors from "@/components/Sponsors";
@@ -16,7 +17,7 @@ export default function Home() {
       <Events />
       <Tranining />
       <News />
-      <Gallyery2 />
+      <GalleryPage />
       <Contact />
       <Sponsors />
     </div>
