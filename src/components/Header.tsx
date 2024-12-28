@@ -13,6 +13,7 @@ import {
 import { Input } from "@nextui-org/input";
 import { Link } from "@nextui-org/link";
 import { Button } from "@nextui-org/button";
+import Form from "next/form";
 
 export const AcmeLogo = () => {
   return (
@@ -106,19 +107,22 @@ export default function Header() {
 
       <NavbarContent justify="end">
         <NavbarItem className="hidden sm:flex">
-          <Input
-            classNames={{
-              base: "max-w-full sm:max-w-[10rem] h-10",
-              mainWrapper: "h-full",
-              input: "text-small",
-              inputWrapper:
-                "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-            }}
-            placeholder="Type to search..."
-            size="sm"
-            startContent={<SearchIcon size={18} />}
-            type="search"
-          />
+          <Form action="/blogs/searchBlog">
+            <Input
+              classNames={{
+                base: "max-w-full sm:max-w-[10rem] h-10",
+                mainWrapper: "h-full",
+                input: "text-small",
+                inputWrapper:
+                  "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+              }}
+              placeholder="Type to search..."
+              size="sm"
+              startContent={<SearchIcon size={18} />}
+              type="text"
+              name="searchText"
+            />
+          </Form>
         </NavbarItem>
         <NavbarItem className="sm:hidden">
           <Button
@@ -134,19 +138,21 @@ export default function Header() {
       <NavbarMenu>
         {isSearchOpen && (
           <NavbarMenuItem className="mb-4">
-            <Input
-              classNames={{
-                base: "max-w-full h-10",
-                mainWrapper: "h-full",
-                input: "text-small",
-                inputWrapper:
-                  "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-              }}
-              placeholder="Type to search..."
-              size="sm"
-              startContent={<SearchIcon size={18} />}
-              type="search"
-            />
+            <Form action="/blogs/searchBlog" className="max-w-full h-10">
+              <Input
+                classNames={{
+                  base: "max-w-full h-10",
+                  mainWrapper: "h-full",
+                  input: "text-small",
+                  inputWrapper:
+                    "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+                }}
+                placeholder="Type to search..."
+                size="sm"
+                startContent={<SearchIcon size={18} />}
+                type="submit"
+              />
+            </Form>
           </NavbarMenuItem>
         )}
         {menuItems.map((item, index) => (

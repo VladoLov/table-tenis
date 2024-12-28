@@ -16,7 +16,7 @@ export default function Hero() {
         <div className="grid max-w-screen-xl mx-auto grid-cols-12 grid-rows-6 w-full h-screen">
           <div className="col-span-7 row-span-6 relative ">
             <div className="flex items-start justify-center flex-col gap-8 w-full h-full ">
-              <h1 className="text-bold text-blue-50 uppercase mx-10 md:px-0 font-bold pt-8 md:pb-0 lg:text-7xl text-start text-4xl shadow-sm">
+              <h1 className="text-bold text-blue-50 uppercase mx-10 md:px-0 font-bold  md:pb-0 lg:text-7xl text-start text-4xl shadow-sm">
                 Stolnotenski klub <span className="text-teal-100">Breza</span>
               </h1>
               <h2 className="text-3xl lg:text-5xl font-semibold mx-10 text-blue-100 text-start shadow-md">
@@ -26,7 +26,7 @@ export default function Hero() {
           </div>
           <div className="lg:col-span-8 col-span-8 row-span-3 order-4 lg:order-3"></div>
           <div className=" hidden md:grid  row-start-5 row-end-7  col-start-9 col-end-13 row-span-1">
-            <div className="h-full pt-8 flex items-center">
+            <div className="h-full pt-2 flex items-center">
               <h2 className="text-2xl font-bold text-end  text-blue-100  shadow-xl">
                 Zaronite u svijet stonog tenisa i otkrijte što čini ovaj sport
                 jedinstvenim
